@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 @RestController
@@ -68,6 +70,14 @@ public class CategoryController {
     public Result deleteById(Long id) {
         log.info("根据id删除分类：{}",id);
         categoryService.deleteById(id);
+        return Result.success();
+    }
+
+    @ApiOperation("修改分类")
+    @PutMapping
+    public Result update(@RequestBody CategoryDTO categoryDTO) {
+        log.info("修改分类：{}",categoryDTO);
+        categoryService.update(categoryDTO);
         return Result.success();
     }
     
