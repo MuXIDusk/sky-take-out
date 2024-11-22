@@ -22,7 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.websocket.server.PathParam;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -90,6 +94,13 @@ public class EmployeeController {
         log.info("员工分页查询：{}", employeePageQueryDTO);
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
+    }
+    
+    @PostMapping("/status/{status}")
+    public Result startOrStop(@PathVariable Integer status,long id) {
+        log.info("启用或禁用员工：{}",id);
+        employeeService.startOrStop(status,id);
+        return Result.success();
     }
     
 }
