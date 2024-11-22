@@ -57,5 +57,9 @@ public class CategoryServiceImpl implements CategoryService {
         List<Category> list = categoryMapper.list(type);
         return list;
     }
+    @Override
+    public void deleteById(Long id) {
+        categoryMapper.deleteById(id);
+    }
 
 }

@@ -2,6 +2,7 @@ package com.sky.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -23,5 +24,8 @@ public interface CategoryMapper {
 
     @Select("select * from category where type = #{type}")
     List<Category> list(int type);
+
+    @Delete("delete from category where id = #{id}")
+    void deleteById(Long id);
 
 }

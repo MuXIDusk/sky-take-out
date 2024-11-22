@@ -17,6 +17,8 @@ import com.sky.service.CategoryService;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,6 +61,14 @@ public class CategoryController {
         log.info("根据类型查询分类：{}",type);
         List<Category> list = categoryService.list(type);
         return Result.success(list);
+    }
+
+    @ApiOperation("根据id删除分类")
+    @DeleteMapping
+    public Result deleteById(Long id) {
+        log.info("根据id删除分类：{}",id);
+        categoryService.deleteById(id);
+        return Result.success();
     }
     
     
