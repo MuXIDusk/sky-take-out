@@ -1,7 +1,10 @@
 package com.sky.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import com.github.pagehelper.Page;
 import com.sky.dto.CategoryPageQueryDTO;
@@ -15,5 +18,10 @@ public interface CategoryMapper {
     void insert(Category category);
 
     Page<Category> pageQuery(CategoryPageQueryDTO categoryPageQueryDTO);
+
+    void update(Category category);
+
+    @Select("select * from category where type = #{type}")
+    List<Category> list(int type);
 
 }
