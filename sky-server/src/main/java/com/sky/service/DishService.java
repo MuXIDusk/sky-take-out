@@ -25,5 +25,7 @@ public interface DishService {
 
     public void updateWithFlavor(DishDTO dishDTO);
 
+    public void startOrStop(int status, long id);
+
 
 }

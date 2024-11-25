@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Set;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 /**
  * 菜品管理
@@ -72,4 +75,13 @@ public class DishController {
         dishService.updateWithFlavor(dishDTO);
         return Result.success();
     }
+
+    @PostMapping("/status/{status}")
+    @ApiOperation("启用停售菜品")
+    public Result startOrStop(@PathVariable int status, long id) {
+        log.info("启用停售菜品：{}", id);
+        dishService.startOrStop(status, id);
+        return Result.success();
+    }
+    
 }
