@@ -40,4 +40,12 @@ public class DishController {
         dishService.saveWithFlavor(dishDTO);//后绪步骤开发
         return Result.success();
     }
+
+    @GetMapping("/page")
+    @ApiOperation("菜品分页查询")
+    public Result<PageResult> page(DishPageQueryDTO dishPageQueryDTO) {
+        log.info("菜品分页查询:{}", dishPageQueryDTO);
+        PageResult pageResult = dishService.pageQuery(dishPageQueryDTO);//后绪步骤定义
+        return Result.success(pageResult);
+    }
 }
