@@ -1,5 +1,6 @@
 package com.sky.controller.admin;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import com.sky.vo.SetmealVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,5 +63,11 @@ public class SetmealController {
         return Result.success(setmealVO);
     }
     
-    
+    @DeleteMapping
+    @ApiOperation("删除套餐")
+    public Result delete(@RequestParam List<Long> ids) {
+        log.info("删除套餐：{}", ids);
+        setmealService.deleteBatch(ids);//后绪步骤实现
+        return Result.success();
+    }
 }
