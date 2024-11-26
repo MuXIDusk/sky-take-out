@@ -1,6 +1,7 @@
 package com.sky.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import com.github.pagehelper.Page;
 import com.sky.annotation.AutoFill;
@@ -18,5 +19,9 @@ public interface SetmealMapper {
 
     
     Page<SetmealVO> pageQuery(SetmealPageQueryDTO setmealPageQueryDTO);
+
+
+    @Select("select * from setmeal where id = #{id}")
+    Setmeal getById(long id);
 
 }
