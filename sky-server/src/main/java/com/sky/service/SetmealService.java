@@ -19,4 +19,6 @@ public interface SetmealService {
 
     void update(SetmealDTO setmealDTO);
 
+    void startOrStop(int status, long id);
+
 }
