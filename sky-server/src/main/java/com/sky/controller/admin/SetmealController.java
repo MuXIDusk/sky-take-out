@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 @RestController
@@ -68,6 +70,14 @@ public class SetmealController {
     public Result delete(@RequestParam List<Long> ids) {
         log.info("删除套餐：{}", ids);
         setmealService.deleteBatch(ids);//后绪步骤实现
+        return Result.success();
+    }
+
+    @PutMapping
+    @ApiOperation("修改套餐")
+    public Result update(@RequestBody SetmealDTO setmealDTO) {
+        log.info("修改套餐：{}", setmealDTO);
+        setmealService.update(setmealDTO);
         return Result.success();
     }
 }
