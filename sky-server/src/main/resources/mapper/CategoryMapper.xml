@@ -29,4 +29,12 @@
         where id = #{id}
     </update>
 
+    <!-- list --> 
+
+    <select id="list" resultType="com.sky.entity.Category">
+        select * from category
+        <where>
+            <if test="type != null">type = #{type}</if>
+        </where>
+    </select>
 </mapper>

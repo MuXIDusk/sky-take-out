@@ -36,7 +36,7 @@ public class UserController {
     @PostMapping("/login")
     @ApiOperation("用户登录")
     public Result<UserLoginVO> login(@RequestBody UserLoginDTO userLoginDTO) {
-        log.info("用户登录：{}", userLoginDTO);
+        log.info("用户登录：{}", userLoginDTO.getCode());
         // 调用service读取或创建用户
         User user = userService.wxLogin(userLoginDTO);
         //生成jwt令牌

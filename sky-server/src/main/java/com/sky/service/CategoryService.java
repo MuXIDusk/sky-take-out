@@ -15,7 +15,7 @@ public interface CategoryService {
 
     void startOrStop(int status, long id);
 
-    List<Category> list(int type);
+    List<Category> list(Integer type);
 
     void deleteById(Long id);
 
