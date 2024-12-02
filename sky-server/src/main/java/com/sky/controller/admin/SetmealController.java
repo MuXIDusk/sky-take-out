@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,7 @@ public class SetmealController {
      * @return
      */
     @PostMapping("/save")
+    @CacheEvict(value = "dishCache", allEntries = true)
     @ApiOperation("新增套餐")
     public Result save(@RequestBody SetmealDTO setmealDTO) {
         log.info("新增套餐：{}", setmealDTO);
@@ -66,6 +68,7 @@ public class SetmealController {
     }
     
     @DeleteMapping
+    @CacheEvict(value = "dishCache", allEntries = true)
     @ApiOperation("删除套餐")
     public Result delete(@RequestParam List<Long> ids) {
         log.info("删除套餐：{}", ids);
@@ -74,6 +77,7 @@ public class SetmealController {
     }
 
     @PutMapping
+    @CacheEvict(value = "dishCache", allEntries = true)
     @ApiOperation("修改套餐")
     public Result update(@RequestBody SetmealDTO setmealDTO) {
         log.info("修改套餐：{}", setmealDTO);
@@ -82,6 +86,7 @@ public class SetmealController {
     }
 
     @PostMapping("/status/{status}")
+    @CacheEvict(value = "dishCache", allEntries = true)
     @ApiOperation("套餐起售、停售")
     public Result startOrStop(@PathVariable int status, long id) {
         log.info("套餐起售、停售：{}", id);
