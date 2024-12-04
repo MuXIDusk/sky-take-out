@@ -65,6 +65,7 @@ public class OrderServiceImpl implements OrderService{
         for (ShoppingCart cart : shoppingCartList) {
             OrderDetail orderDetail = new OrderDetail();
             BeanUtils.copyProperties(cart,orderDetail);
+            orderDetail.setOrderId(order.getId());
             orderDetailList.add(orderDetail);
         }
         //向订单明细表格中插入数据
@@ -79,6 +80,24 @@ public class OrderServiceImpl implements OrderService{
                 .orderTime(order.getOrderTime())
                 .build();
     
+    }
+
+    public void paySuccess(String outTradeNo) {
+        // 当前登录用户id
+        Long userId = BaseContext.getCurrentId();
+
+        // 根据订单号查询当前用户的订单
+        Orders ordersDB = orderMapper.getByNumberAndUserId(outTradeNo, userId);
+
+        // 根据订单id更新订单的状态、支付方式、支付状态、结账时间
+        Orders orders = Orders.builder()
+                .id(ordersDB.getId())
+                .status(Orders.TO_BE_CONFIRMED)
+                .payStatus(Orders.PAID)
+                .checkoutTime(LocalDateTime.now())
+                .build();
+
+        orderMapper.update(orders);
     }
 
 }
