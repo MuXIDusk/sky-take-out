@@ -1,5 +1,8 @@
 package com.sky.mapper;
 
+import java.time.LocalDateTime;
+import java.util.*;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -14,5 +17,11 @@ public interface OrderMapper {
     Orders getByNumberAndUserId(String outTradeNo, Long userId);
 
     void update(Orders orders);
+
+     @Select("select * from orders where status = #{status} and order_time < #{orderTime}")
+    List<Orders> getByStatusAndOrdertimeLT(Integer status, LocalDateTime orderTime);
+
+    @Select("select * from orders where id = #{id}")
+	Orders getById(Long id);
 
 }
