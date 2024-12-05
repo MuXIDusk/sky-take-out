@@ -1,6 +1,7 @@
 package com.sky.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
@@ -31,4 +32,11 @@ public interface DishMapper {
 
     @Select("select * from dish where status = 1 and category_id = #{categoryId}")
     List<Dish> list(Dish dish);
+
+    /**
+     * 根据条件统计菜品数量
+     * @param map
+     * @return
+     */
+    Integer countByMap(Map map);
 }
