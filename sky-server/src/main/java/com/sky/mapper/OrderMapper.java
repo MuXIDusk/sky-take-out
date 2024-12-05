@@ -6,6 +6,7 @@ import java.util.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import com.sky.dto.GoodsSalesDTO;
 import com.sky.entity.Orders;
 
 @Mapper
@@ -31,4 +32,6 @@ public interface OrderMapper {
     Double sumByMap(Map map);
 
     Integer countByMap(Map map);
+
+    List<GoodsSalesDTO> getSalesTop10(LocalDateTime beginTime, LocalDateTime endTime);
 }
